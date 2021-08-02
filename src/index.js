@@ -1,14 +1,19 @@
 const express = require('express');
 const app = express();
 
+const mockUserData = [];
+
 app.get('/', function(req, res) {
 
   res.send('Hello World!');
 
 });
 
-app.listen(3000, function() {
+app.get('/users', function(req, res){
 
-  console.log('Example application, listening to port 3000!');
+	res.send(mockUserData);
 
 });
+
+app.listen(3000, function(){console.log('Server is listening')})
+
