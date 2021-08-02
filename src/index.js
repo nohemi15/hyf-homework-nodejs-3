@@ -12,30 +12,23 @@ app.get('/', function(req,res){
 });
 
 app.get('/users', function(req,res){
-  const usr = mockUsername.map((item)=>({id:item}));
-    res.json(usr);
-});
 
-app.post('/user',(req,res)=>{
-
-  mockUsername.push(mockUsername.length);
-  const user = {id:mockUsername[mockUsername.length-1]}; 
-  res.status(200).json(user);  
+    res.json(mockUsername);
 
 });
 
-app.get('/user/:id', (req,res)=>{
+app.get('/user/:id', function(req,res){
 
-    const index = mockUsername.indexOf(Number(req.params.id));
-    
-    console.log(index)
+    const user = mockUsername.find(usr => usr.id == req.params.id)
+    res.json(user);
+  
+});
 
-    if (index < 0){
-        return res.sendStatus(204);
-        
-    }
-    return res.json({id:Number(req.params.id)});
-    
+app.post('/user', (req,res) => {
+
+  mockUsername.push({id:0});
+  res.json(mockUsername);
+
 });
 
 app.listen(3000, function(){console.log('server is listening')})
