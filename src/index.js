@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-const mockUsername = [];
+const mockUserdata = [];
 
 
 
@@ -13,21 +13,21 @@ app.get('/', function(req,res){
 
 app.get('/users', function(req,res){
 
-    res.json(mockUsername);
+    res.json(mockUserdata);
 
 });
 
 app.get('/user/:id', function(req,res){
 
-    const user = mockUsername.find(usr => usr.id == req.params.id)
+    const user = mockUserdata.find(usr => usr.id == req.params.id)
     res.json(user);
   
 });
 
 app.post('/user', (req,res) => {
 
-  mockUsername.push({id:0});
-  res.json(mockUsername);
+  mockUserdata.push({id:0});
+  res.json(mockUserdata);
 
 });
 
